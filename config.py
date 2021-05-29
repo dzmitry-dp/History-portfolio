@@ -1,0 +1,2 @@
+class FlaskHistConfiguration:
+    DEBUG = True

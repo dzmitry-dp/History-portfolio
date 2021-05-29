@@ -1,6 +1,7 @@
-from app import app
+from app.hist_app import hist
 from flask import render_template
 
-@app.route("/")
+
+@hist.route("/")
 def index():
     return render_template('index.html')

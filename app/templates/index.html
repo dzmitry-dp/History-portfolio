@@ -5,18 +5,30 @@ Start page
 {% endblock %}
 
 {% block add_position %}
-Add position
-	<form action="{{url_for('portfolio.add_position')}}" method="POST">
-        {%for field in form %}
-            <div>
-                {{field.label()}}
-                {{field()}}
-            </div>
-        {% endfor %}
-        <button type="submit">Add</button>
-    </form>	
+<h2 align="center">Add position</h2>
+<form action="{{url_for('portfolio.add_position')}}" method="POST" autocomplete="off">
+    <table>
+        <tr>
+            {% for field in form %}
+                <th>
+                    {{field.label()}}
+                </th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {%for field in form %}
+                <td>
+                    {{field()}}
+                </td>
+            {% endfor %}
+            <td>
+                <button type="submit">Add</button>
+            </td>
+        </tr>
+    </table>
+</form>	
 {% endblock %}
 
 {% block portfolio %}
-Portfolio Block
+<h2 align="center">Portfolio Block</h2>
 {% endblock %}

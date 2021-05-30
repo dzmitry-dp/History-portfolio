@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Start page
+Add new position
 {% endblock %}
 
 {% block add_position %}
 Add position
-	<form action="{{url_for('portfolio.add_position')}}" method="POST">
+    <form action="{{url_for('portfolio.add_position')}}" method="POST">
         {%for field in form %}
             <div>
                 {{field.label()}}
@@ -14,9 +14,9 @@ Add position
             </div>
         {% endfor %}
         <button type="submit">Add</button>
-    </form>	
+    </form>
 {% endblock %}
 
 {% block portfolio %}
-Portfolio Block
+Отрисовываю новую таблицу
 {% endblock %}

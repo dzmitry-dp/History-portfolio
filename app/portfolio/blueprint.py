@@ -1,10 +1,11 @@
-from app.hist_app import hist
-from flask import render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request
 from app.forms import NewPositionForm
 
 
-@hist.route("/", methods=['POST', 'GET'])
-def index():
+portfolio = Blueprint('portfolio', __name__, template_folder='templates')
+
+@portfolio.route('/', methods=['POST', 'GET'])
+def add_position():
     form = NewPositionForm()
     if request.method == 'POST':
         date_time = request.form['date_time']
@@ -12,5 +13,5 @@ def index():
         amount = request.form['amount']
         portfolio = request.form['portfolio']
         print(date_time, instrument, amount, portfolio)
-        return redirect(url_for('portfolio.add_position'))
-    return render_template('index.html', form=form)
+        return render_template('add_position.html', form=form)
+    return render_template('add_position.html', form=form)

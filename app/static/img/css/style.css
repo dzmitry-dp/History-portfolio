@@ -1,0 +1,10 @@
+.wrapper {
+  display: table;
+  width: 100%;
+}
+.box {
+  display: table-cell;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+}

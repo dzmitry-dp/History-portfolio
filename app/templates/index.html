@@ -9,14 +9,14 @@ Start page
 <form action="{{url_for('portfolio.add_position')}}" method="POST" autocomplete="off">
     <table>
         <tr>
-            {% for field in form %}
+            {% for field in position_form %}
                 <th>
                     {{field.label()}}
                 </th>
             {% endfor %}
         </tr>
         <tr>
-            {%for field in form %}
+            {%for field in position_form %}
                 <td>
                     {{field()}}
                 </td>
@@ -30,5 +30,10 @@ Start page
 {% endblock %}
 
 {% block portfolio %}
-<h2 align="center">Portfolio Block</h2>
+<h2 align="center">Portfolio</h2>
+<div align="center">
+    {{portfolio_form.portfolio_name}}
+    <button type="submit">Show</button>
+    <button type="submit">Create</button>
+</div>
 {% endblock %}

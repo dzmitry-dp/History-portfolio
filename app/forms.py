@@ -8,7 +8,8 @@ class NewOpenPositionForm(Form):
     time = TimeField(label='Time', format='%H:%M', default=datetime.now().time)
     instrument = StringField(label='Instrument', default='AUD/CAD')
     amount = IntegerField(label='Amount', default=0)
-    portfolio = SelectField(label='Portfolio', choices=[
-    	('portfolio_1', 'portfolio_1'), 
-    	('portfolio_2', 'portfolio_2'), 
-        ])
+    portfolio_name = StringField(label='Portfolio', default='portfolio_1')
+
+
+class PortfolioForm(Form):
+    portfolio_name = StringField(label='Portfolio', default='portfolio_1')

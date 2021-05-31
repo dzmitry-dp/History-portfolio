@@ -1,13 +1,14 @@
 from app import add_new_position
 from app.hist_app import hist
 from flask import render_template, request, redirect, url_for
-from app.forms import NewOpenPositionForm
+from app.forms import NewOpenPositionForm, PortfolioForm
 
 
 @hist.route("/", methods=['POST', 'GET'])
 def index():
-    form = NewOpenPositionForm()
+    position_form = NewOpenPositionForm()
+    portfolio_form = PortfolioForm()
     if request.method == 'POST':
         add_new_position(request.form)
         return redirect(url_for('portfolio.add_position'))
-    return render_template('index.html', form=form)
+    return render_template('index.html', position_form=position_form, portfolio_form=portfolio_form)

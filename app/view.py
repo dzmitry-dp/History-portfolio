@@ -1,7 +1,7 @@
-from app import add_new_position
-from app.hist_app import hist
 from flask import render_template, request, redirect, url_for
-from app.forms import NewOpenPositionForm, PortfolioForm
+
+from app.hist_app import hist
+from app.forms import PortfolioForm
 
 
 @hist.route("/", methods=['POST', 'GET'])

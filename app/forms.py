@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, SelectField
+from wtforms import Form, StringField
 from wtforms.fields.html5 import DateField, TimeField, IntegerField
 from datetime import datetime
 

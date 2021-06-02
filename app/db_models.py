@@ -1,8 +1,9 @@
-from app import hist_app
 from flask_sqlalchemy import SQLAlchemy
 
+from app.hist_app import hist
 
-db = SQLAlchemy(hist_app.hist)
+
+db = SQLAlchemy(hist)
 
 class Position(db.Model):
     __tablename__ = 'test'
@@ -25,3 +26,18 @@ class Position(db.Model):
 
     def __repr__(self):
         return f'Opening_time: {self.opening_time} Instrument: {self.instrument} Amount: {self.amount} Price_open: {self.open_price}'
+
+
+def write_position_to_database(position):
+    position_to_db = Position(
+        opening_time=position['opening_time'],
+        instrument=position['instrument'],
+        amount=position['amount'],
+        open_price=position['open_price'],
+    )
+    db.session.add(position_to_db)
+    db.session.commit()
+
+def read_table_from_database(table_name):
+    positions = Position.query.all()
+    print(positions)

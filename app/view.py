@@ -5,10 +5,9 @@ from app.forms import NewOpenPositionForm, PortfolioForm
 
 
 @hist.route("/", methods=['POST', 'GET'])
-def index():
-    position_form = NewOpenPositionForm()
+# выбор портфолио?
+def select_portfolio():
     portfolio_form = PortfolioForm()
     if request.method == 'POST':
-        add_new_position(request.form)
         return redirect(url_for('portfolio.add_position'))
-    return render_template('index.html', position_form=position_form, portfolio_form=portfolio_form)
+    return render_template('index.html', portfolio_form=portfolio_form)

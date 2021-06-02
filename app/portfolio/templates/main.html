@@ -6,17 +6,17 @@ Add new position
 
 {% block add_position %}
 <h2 align="center">Add position</h2>
-<form action="{{url_for('portfolio.add_position')}}" method="POST">
+<form action="{{url_for('portfolio.add_position')}}" method="POST" autocomplete="off">
     <table>
         <tr>
-            {% for field in form %}
+            {% for field in position_form %}
                 <th>
                     {{field.label()}}
                 </th>
             {% endfor %}
         </tr>
         <tr>
-            {%for field in form %}
+            {%for field in position_form %}
                 <td>
                     {{field()}}
                 </td>
@@ -30,5 +30,17 @@ Add new position
 {% endblock %}
 
 {% block portfolio %}
-Отрисовываю новую таблицу
+<h2 align="center">Portfolio</h2>
+<form action="{{url_for('portfolio.show_portfolio')}}" method="POST" autocomplete="off">
+    <table>
+        <tr>
+            <td>
+                {{portfolio_form.portfolio_name}}
+            </td>
+            <td>
+                <button type="submit">Show</button>
+            </td>
+        </tr>
+    </table>
+</form>
 {% endblock %}

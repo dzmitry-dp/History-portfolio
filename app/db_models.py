@@ -15,9 +15,6 @@ class Position(db.Model):
 
     def __init__(self, *args, **kwargs):
         super(Position, self).__init__(*args, **kwargs)
-        # self.create_table()
-
-    def create_table(self):
         db.create_all()
 
     def commit(self):
@@ -38,6 +35,11 @@ def write_position_to_database(position):
     db.session.add(position_to_db)
     db.session.commit()
 
-def read_table_from_database(table_name):
+def read_table_from_database():
     positions = Position.query.all()
-    print(positions)
+    return positions
+
+def remove_position_from_database(primapy_key):
+    del_obj = Position.query.filter_by(id=primapy_key).first()
+    db.session.delete(del_obj)
+    db.session.commit()

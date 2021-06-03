@@ -1,13 +1,12 @@
 from flask import render_template, request, redirect, url_for
 
 from app.hist_app import hist
-from app.forms import PortfolioForm
+from app.forms import NewOpenPositionForm
+from app.db_models import read_table_from_database
 
 
 @hist.route("/", methods=['POST', 'GET'])
-# выбор портфолио?
-def select_portfolio():
-    portfolio_form = PortfolioForm()
-    if request.method == 'POST':
-        return redirect(url_for('portfolio.add_position'))
-    return render_template('index.html', portfolio_form=portfolio_form)
+def get_started():
+    position_form = NewOpenPositionForm()
+    portfolio_data = read_table_from_database() 
+    return render_template('index.html', position_form=position_form, portfolio_data=portfolio_data)

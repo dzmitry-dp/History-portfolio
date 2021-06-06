@@ -9,20 +9,48 @@ Let's start
 <form action="{{url_for('portfolio.add_position')}}" method="POST" autocomplete="off">
     <table>
         <tr>
-            {% for field in position_form %}
-                <th>
-                    {{field.label()}}
-                </th>
-            {% endfor %}
+            <th>{{position_form.date.label}}</th>
+            <th>{{position_form.time.label}}</th>
+            <th>{{position_form.instrument.label}}</th>
+            <th>{{position_form.amount.label}}</th>
         </tr>
         <tr>
-            {%for field in position_form %}
-                <td>
-                    {{field()}}
-                </td>
-            {% endfor %}
+            <td>
+                {{position_form.date}}
+            </td>
+            <td>
+                {{position_form.time}}
+            </td>
+            <td>
+                {{position_form.instrument}}
+            </td>
+            <td>
+                {{position_form.amount}}
+            </td>
             <td>
                 <button type="submit">Add</button>
+            </td>
+        </tr>
+        <tr class="err">
+            <td>
+                {% for error in position_form.date.errors %}
+                {{ error }}
+                {% endfor %}
+            </td>
+            <td>
+                {% for error in position_form.time.errors %}
+                {{ error }}
+                {% endfor %}
+            </td>
+            <td>
+                {% for error in position_form.instrument.errors %}
+                {{ error }}
+                {% endfor %}
+            </td>
+            <td>
+                {% for error in position_form.amount.errors %}
+                {{ error }}
+                {% endfor %}
             </td>
         </tr>
     </table>
@@ -31,7 +59,7 @@ Let's start
 
 {% block portfolio %}
 <h2>Portfolio</h2>
-<form action="{{url_for('portfolio.remove_position')}}" method="POST" autocomplete="off">
+<form action="{{url_for('portfolio.remove_position')}}" method="POST">
     </table>
     <div>
         <h2>{{portfolio_name}}</h2>

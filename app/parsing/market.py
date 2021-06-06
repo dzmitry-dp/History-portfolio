@@ -26,8 +26,7 @@ def get_open_price(instrument, opening_time, direction):
     elif 30 < passed.days < 730:
         interval = '1h'
         data_index = opening_time - timedelta(minutes=opening_time.minute)
-    else:
-        print('Открывай позицию не старше 2х лет')
+    else: # ограничение для позиций старше 730 дней
         return None
 
     market = Market(instrument=instrument, start=time_start, end=time_end, interval=interval)

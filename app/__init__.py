@@ -15,7 +15,7 @@ def get_new_position(form):
 
     if int(amount) > 0:
         direction = 'buy'
-    elif int(amount) < 0:
+    elif int(amount) <= 0:
         direction = 'sell'
 
     open_price = get_open_price(instrument, opening_time, direction)
@@ -23,6 +23,7 @@ def get_new_position(form):
         'opening_time': opening_time,
         'instrument': instrument,
         'amount': amount,
+        'direction': direction,
         'open_price': open_price,
     }
     return position

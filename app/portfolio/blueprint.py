@@ -9,11 +9,11 @@ portfolio = Blueprint('portfolio', __name__, template_folder='templates')
 
 @portfolio.route('/added', methods=['POST', 'GET'])
 def add_position():
-    position_form = NewOpenPositionForm()
-    if request.method == 'POST':
-        position_to_add = get_new_position(request.form)
+    position_form = NewOpenPositionForm(request.form)
+    if request.method == 'POST' and position_form.validate():
+        position_to_add = get_new_position(request.form) # полученные данные из формы
         write_position_to_database(position_to_add)
-        portfolio_data = read_table_from_database()
+    portfolio_data = read_table_from_database() # таблица данных из DB
     return render_template('main.html', position_form=position_form, portfolio_data=portfolio_data)
 
 @portfolio.route('/removed', methods=['POST', 'GET'])

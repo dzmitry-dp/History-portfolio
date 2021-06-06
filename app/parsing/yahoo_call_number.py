@@ -12,6 +12,7 @@ call_number = {
     'CHF/PLN': {'cipher': 'CHFPLN=X', 'coefficient': 10000},
     'EUR/AUD': {'cipher': 'EURAUD=X', 'coefficient': 10000},
     'EUR/CAD': {'cipher': 'EURCAD=X', 'coefficient': 10000},
+    'EUR/CHF': {'cipher': 'EURCHF=X', 'coefficient': 10000},
     'EUR/GBP': {'cipher': 'EURGBP=X', 'coefficient': 10000},
     'EUR/NZD': {'cipher': 'EURNZD=X', 'coefficient': 10000},
     'EUR/JPY': {'cipher': 'EURJPY=X', 'coefficient': 100},

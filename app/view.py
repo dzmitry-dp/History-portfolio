@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template
 
 from app.hist_app import hist
 from app.forms import NewOpenPositionForm

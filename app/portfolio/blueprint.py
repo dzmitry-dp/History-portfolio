@@ -16,13 +16,6 @@ def add_position():
         portfolio_data = read_table_from_database()
     return render_template('main.html', position_form=position_form, portfolio_data=portfolio_data)
 
-# @portfolio.route('/received', methods=['POST', 'GET'])
-# def show_portfolio():
-#     position_form = NewOpenPositionForm()
-#     if request.method == 'POST':
-#         portfolio_data = read_table_from_database() 
-#     return render_template('main.html', position_form=position_form, portfolio_data=portfolio_data)
-
 @portfolio.route('/removed', methods=['POST', 'GET'])
 def remove_position():
     position_form = NewOpenPositionForm()

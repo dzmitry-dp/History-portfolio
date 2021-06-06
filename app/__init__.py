@@ -1,7 +1,7 @@
 from flask import Flask
 from datetime import datetime
 
-from app.parsing import get_open_price
+from app.parsing.market import get_open_price
 
 
 def create_app(name=__name__):
@@ -12,8 +12,13 @@ def get_new_position(form):
     opening_time = datetime.strptime(form['date'] + ' ' + form['time'], '%Y-%m-%d %H:%M')
     instrument = form['instrument']
     amount = form['amount']
-    open_price = get_open_price(instrument)
 
+    if int(amount) > 0:
+        direction = 'buy'
+    elif int(amount) < 0:
+        direction = 'sell'
+
+    open_price = get_open_price(instrument, opening_time, direction)
     position = {
         'opening_time': opening_time,
         'instrument': instrument,

@@ -1,6 +1,9 @@
 .git/*
-__pycache__/
+__pycache__
 */__pycache__/*
 .vscode/*
 */.vscode/*
 venv/*
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*.ipynb

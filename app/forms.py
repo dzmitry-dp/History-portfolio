@@ -3,7 +3,7 @@ from wtforms.validators import ValidationError, DataRequired
 from wtforms.fields.html5 import DateField, TimeField, IntegerField
 from datetime import datetime, timedelta
 
-from app.parsing.yahoo_call_number import call_number
+from app.parsing.yahoo import call_number
 
 
 def validation_date(form, date):

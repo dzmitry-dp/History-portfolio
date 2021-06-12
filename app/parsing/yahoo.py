@@ -1,5 +1,5 @@
 call_number = {
-    'AUD/CAD': {'cipher': 'AUDCAD=X', 'coefficient': 10001},
+    'AUD/CAD': {'cipher': 'AUDCAD=X', 'coefficient': 10000},
     'AUD/CHF': {'cipher': 'AUDCHF=X', 'coefficient': 10000},
     'AUD/NZD': {'cipher': 'AUDNZD=X', 'coefficient': 10000},
     'AUD/JPY': {'cipher': 'AUDJPY=X', 'coefficient': 100},

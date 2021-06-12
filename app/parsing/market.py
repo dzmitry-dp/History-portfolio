@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 from datetime import datetime, timedelta
 
-from app.parsing.yahoo_call_number import call_number
+from app.parsing.yahoo import call_number
 
 
 class Market:
@@ -20,14 +20,18 @@ def get_open_price(instrument, opening_time, direction):
     time_end = (opening_time + timedelta(days=1)).strftime('%Y-%m-%d') # скачиваем данные за сутки
     passed = datetime.today() - opening_time # как давно открывается
 
-    if passed.days < 30:
-        interval = '1m'
-        data_index = opening_time
-    elif 30 < passed.days < 730:
-        interval = '1h'
-        data_index = opening_time - timedelta(minutes=opening_time.minute)
-    else: # ограничение для позиций старше 730 дней
-        return None
+    # if passed.days < 30:
+    #     interval = '1m'
+    #     data_index = opening_time
+    # elif 30 < passed.days < 730:
+    #     interval = '1h'
+    #     data_index = opening_time - timedelta(minutes=opening_time.minute)
+    # else: # ограничение для позиций старше 730 дней
+    #     return None
+
+    interval = '1h'
+    if passed.days > 730:
+        return None # ограничение для позиций старше 730 дней
 
     market = Market(instrument=instrument, start=time_start, end=time_end, interval=interval)
     data = market.history_data

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request
 
 from app import get_new_position
 from app.forms import NewOpenPositionForm
-from app.db.portfolio import write_position_to_database, read_portfolio_table_from_database, remove_position_from_database
+# from app.db.portfolio import write_position_to_database, read_portfolio_table_from_database, remove_position_from_database
 
 
 portfolio = Blueprint('portfolio', __name__, template_folder='templates')

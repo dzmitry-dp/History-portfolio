@@ -5,25 +5,23 @@ from app.hist_app import hist
 db = SQLAlchemy(hist)
 
 def write_position_to_database(position):
-    with db.engine.begin() as connection:
-        position_to_db = Position(
-            opening_time=position['opening_time'],
-            instrument=position['instrument'],
-            amount=position['amount'],
-            open_price=position['open_price'],
-        )
-        db.session.add(position_to_db)
-        db.session.commit()
+    position_to_db = Position(
+        opening_time=position['opening_time'],
+        instrument=position['instrument'],
+        amount=position['amount'],
+        open_price=position['open_price'],
+    )
+    db.session.add(position_to_db)
+    db.session.commit()
 
 def read_portfolio_table_from_database():
     positions = Position.query.all()
     return positions
 
 def remove_position_from_database(primapy_key):
-    with db.engine.begin() as connection:
-        del_obj = Position.query.filter_by(id=primapy_key).first()
-        db.session.delete(del_obj)
-        db.session.commit() 
+    del_obj = Position.query.filter_by(id=primapy_key).first()
+    db.session.delete(del_obj)
+    db.session.commit() 
 
 
 class Position(db.Model):

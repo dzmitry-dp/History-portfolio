@@ -59,41 +59,52 @@ Let's start
 
 {% block portfolio %}
 <h2>Portfolio</h2>
-<form action="{{url_for('portfolio.remove_position')}}" method="POST">
-    </table>
-    <div>
-        <h2>{{portfolio_name}}</h2>
-        <table>
-            <tr>
-                <th>DateTime</th>
-                <th>Instrument</th>
-                <th>Amount</th>
-                <th>PriceOpen</th>
-            </tr>
-            {%for data in portfolio_data %}
-            <tr>
-                <td>
-                    {{data.opening_time}}
-                </td>
-                <td>
-                    {{data.instrument}}
-                </td>
-                <td>
-                    {{data.amount}}
-                </td>
-                <td>
-                    {{data.open_price}}
-                </td>
-                <td>
+</table>
+<div>
+    <table>
+        <tr>
+            <th>DateTime</th>
+            <th>Instrument</th>
+            <th>Amount</th>
+            <th>PriceOpen</th>
+        </tr>
+        {%for data in portfolio_data %}
+        <tr>
+            <td>
+                {{data.opening_time}}
+            </td>
+            <td>
+                {{data.instrument}}
+            </td>
+            <td>
+                {{data.amount}}
+            </td>
+            <td>
+                {{data.open_price}}
+            </td>
+            <td>
+                <form action="{{url_for('portfolio.remove_position')}}" method="POST">
                     <button type="submit" name='del' value="{{data.id}}">del</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </table> 
-    </div>
-</form>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table> 
+</div>
 {% endblock %}
 
 {% block plot_result %}
-
+</table>
+<div>
+    <h2>Result</h2>
+    <table>
+        <tr>
+            <td>
+                <form action="{{url_for('portfolio.show_portfolio_result')}}" method="POST">
+                    <button type="submit">Draw</button>
+                </form>
+            </td>
+        </tr>
+    </table> 
+</div>
 {% endblock %}

@@ -1,27 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
+"""Модуль для хранения данных о портфолио"""
 
-from app.hist_app import hist
-
-db = SQLAlchemy(hist)
-
-def write_position_to_database(position):
-    position_to_db = Position(
-        opening_time=position['opening_time'],
-        instrument=position['instrument'],
-        amount=position['amount'],
-        open_price=position['open_price'],
-    )
-    db.session.add(position_to_db)
-    db.session.commit()
-
-def read_portfolio_table_from_database():
-    positions = Position.query.all()
-    return positions
-
-def remove_position_from_database(primapy_key):
-    del_obj = Position.query.filter_by(id=primapy_key).first()
-    db.session.delete(del_obj)
-    db.session.commit() 
+from app.db.database import db
 
 
 class Position(db.Model):
@@ -42,3 +21,23 @@ class Position(db.Model):
 
     def __repr__(self):
         return f'Opening_time: {self.opening_time} Instrument: {self.instrument} Amount: {self.amount} Price_open: {self.open_price}'
+
+
+def write_position_to_database(position):
+    position_to_db = Position(
+        opening_time=position['opening_time'],
+        instrument=position['instrument'],
+        amount=position['amount'],
+        open_price=position['open_price'],
+    )
+    db.session.add(position_to_db)
+    db.session.commit()
+
+def read_portfolio_table_from_database():
+    positions = Position.query.all()
+    return positions
+
+def remove_position_from_database(primapy_key):
+    del_obj = Position.query.filter_by(id=primapy_key).first()
+    db.session.delete(del_obj)
+    db.session.commit() 

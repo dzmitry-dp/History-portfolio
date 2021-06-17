@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Result
+{% endblock %}
+
+{% block plot_result %}
+</table>
+<div>
+    <h2>Result</h2>
+    <table>
+        <tr>
+            <td>
+                <form action="{{url_for('portfolio.show_portfolio_result')}}" method="POST">
+                    <button type="submit">Draw</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Тут график
+            </td>
+        </tr>
+    </table> 
+</div>
+{% endblock %}

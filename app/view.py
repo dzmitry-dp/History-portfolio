@@ -1,6 +1,6 @@
 from flask import render_template
 
-from app.hist_app import hist
+from app import hist
 from app.forms import NewOpenPositionForm
 from app.db.portfolio import read_portfolio_table_from_database
 

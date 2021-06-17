@@ -1,29 +1,17 @@
 from flask import Flask
-from datetime import datetime
 
-from app.parsing.market import get_open_price
+from app.db.database import db
+from config import FlaskHistConfiguration
 
 
 def create_app(name=__name__):
-    app = Flask(__name__)
+    app = Flask(name)
+    app.config.from_object(FlaskHistConfiguration)
+    db.init_app(app)
+
+    import app.portfolio.blueprint as blueprint
+    app.register_blueprint(blueprint.portfolio, url_prefix='/display')
     return app
 
-def get_new_position(form):
-    opening_time = datetime.strptime(form['date'] + ' ' + form['time'], '%Y-%m-%d %H:%M')
-    instrument = form['instrument']
-    amount = form['amount']
-
-    if int(amount) > 0:
-        direction = 'buy'
-    elif int(amount) <= 0:
-        direction = 'sell'
-
-    open_price = get_open_price(instrument, opening_time, direction)
-    position = {
-        'opening_time': opening_time,
-        'instrument': instrument,
-        'amount': amount,
-        'direction': direction,
-        'open_price': open_price,
-    }
-    return position
+hist = create_app()
+hist.app_context().push()

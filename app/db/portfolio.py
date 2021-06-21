@@ -1,10 +1,11 @@
 """Модуль для хранения данных о портфолио"""
 
 from app.db.database import db
+from config import positions_table # имя таблицы где хранятся данные портфеля
 
 
 class Position(db.Model):
-    __tablename__ = 'test'
+    __tablename__ = positions_table
     id = db.Column(db.Integer, primary_key=True)
     opening_time = db.Column(db.DateTime)
     instrument = db.Column(db.String(14)) # ограничение в 14 символов

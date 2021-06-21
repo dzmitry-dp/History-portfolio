@@ -4,23 +4,37 @@ import pandas as pd
 from threading import Thread
 
 from app.db.database import db
+from config import history_table # имя таблицы исторических данных
+
 
 class ThreadHistoryPrices(Thread):
+    _table_name = history_table # имя таблицы исторических данных
+    
     def __init__(self, instrument, yahoo_df):
         Thread.__init__(self)
         self.instrument = instrument
         self.df = yahoo_df
-        self.table_name = 'm_test'
 
     def run(self):
-        df_to_db = get_prices(self.df, self.instrument)
         from app import hist
+
+        df_to_db = get_prices(self.df, self.instrument)
+
         with hist.app_context():
-            df_from_db = read_history_price_from_database(self.table_name, db.engine)
-            write_history_data_to_sql(
-                self.table_name, 
-                merge_sql_dataframe_and_new_history_data(df_from_db, df_to_db),
-                db.engine,
+            try:
+                df_from_db = read_history_price_from_database(self._table_name, db.engine)
+                merged = merge_sql_dataframe_and_new_history_data(df_from_db, df_to_db)
+                write_history_data_to_sql(
+                    table_name = self._table_name, 
+                    df_to_db = merged,
+                    con = db.engine,
+                    )
+            except ValueError:
+                print('Table not found ')
+                write_history_data_to_sql(
+                    table_name = self._table_name, 
+                    df_to_db = df_to_db,
+                    con = db.engine,
                 )
 
 

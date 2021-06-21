@@ -59,7 +59,6 @@ Let's start
 
 {% block portfolio %}
 <h2>Portfolio</h2>
-</table>
 <div>
     <table>
         <tr>
@@ -90,6 +89,16 @@ Let's start
         </tr>
         {% endfor %}
     </table> 
+</div>
+
+<div class="loader" id="loader">
+  
+  <span>↓</span>
+  <span style="--delay: 0.1s">↓</span>
+  <span style="--delay: 0.3s">↓</span>
+  <span style="--delay: 0.4s">↓</span>
+  <span style="--delay: 0.5s">↓</span>
+  
 </div>
 {% endblock %}
 

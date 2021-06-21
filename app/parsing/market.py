@@ -25,11 +25,8 @@ class Market:
 
 def get_market(instrument, time_start, interval):
     market = Market(instrument=instrument, start=time_start, interval=interval)
-    print('Получили исторические данные')
     thread = ThreadHistoryPrices(instrument, market.history_data) # поток записи исторических данных
-    print('Создали поток')
     thread.start()
-    print('Запустили поток')
     return market.history_data
 
 def get_open_price(instrument, opening_time, direction):
@@ -42,9 +39,7 @@ def get_open_price(instrument, opening_time, direction):
     if passed.days > 730:
         return None # ограничение для позиций старше 730 дней
 
-    print('Идем парсить данные с Yahoo!')
     data = get_market(instrument=instrument, time_start=time_start, interval=interval)
-    print('Закончили парсить данные')
 
     if direction == 'buy': # если покупаю, то по high (худший вариант)
         return data.loc[data_index]['High']
@@ -67,7 +62,6 @@ def get_new_position(form):
         'opening_time': opening_time,
         'instrument': instrument,
         'amount': amount,
-        'direction': direction,
         'open_price': open_price,
     }
     return position

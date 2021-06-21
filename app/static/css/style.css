@@ -8,8 +8,29 @@ td{
   text-align: center;
 }
 .header {
-  height: 150px;
+  height: 100px;
 }
 .err {
   color: red;
+}
+.loader {
+  display: flex;
+  /* height: 100vh; */
+  align-items: center;
+  justify-content: center;
+}
+@keyframes arrows {
+  100% {
+    color: black;
+    transform: translateY(0);
+  }
+  50% {
+    color: white;
+    transform: translateY(20px);
+  }
+}
+
+span {
+  --delay: 0s;
+  animation: arrows 1s var(--delay) infinite ease-in;
 }

@@ -1,5 +1,3 @@
-# <center> <h1> History Portfolio </h1> </center>
-
 ![app screen](./app/static/img/app.png)
 
 ## FAQ

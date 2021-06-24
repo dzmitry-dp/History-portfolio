@@ -28,5 +28,5 @@ def remove_position():
 def show_portfolio_result():
     position_form = NewOpenPositionForm()
     portfolio_data = read_portfolio_table_from_database() 
-    plotting.ResultPips(portfolio_data)
+    plotting.draw_result_pips_graph(portfolio_data)
     return render_template('result.html', position_form=position_form, portfolio_data=portfolio_data)

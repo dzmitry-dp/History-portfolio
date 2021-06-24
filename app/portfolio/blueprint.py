@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request
 
 from app.forms import NewOpenPositionForm
-from app.db.portfolio import write_position_to_database, read_portfolio_table_from_database, remove_position_from_database
-from app.parsing import market
 from app.portfolio import plotting
+from app.db.portfolio import write_position_to_database, read_portfolio_table_from_database, remove_position_from_database
+from app.portfolio.calculations import get_plotting_dataframe
+from app.parsing import market
 
 portfolio = Blueprint('portfolio', __name__, template_folder='templates')
 
@@ -28,5 +29,6 @@ def remove_position():
 def show_portfolio_result():
     position_form = NewOpenPositionForm()
     portfolio_data = read_portfolio_table_from_database() 
-    plotting.draw_result_pips_graph(portfolio_data)
+    df_for_plotting = get_plotting_dataframe(portfolio_data)
+    plotting.draw_result_pips_graph(df_for_plotting)
     return render_template('result.html', position_form=position_form, portfolio_data=portfolio_data)

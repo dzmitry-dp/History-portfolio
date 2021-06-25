@@ -38,4 +38,4 @@ ___
 To run the application:
 > ``` python main.py ```
 
-Following the link http://127.0.0.1:5000/ you will see everything for yourself :)
+Following the link http://127.0.0.1:5000/ you will see everything by yourself :)

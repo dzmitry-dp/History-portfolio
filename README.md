@@ -1,4 +1,4 @@
-![app screen](./app/static/img/app.png)
+![app screen](./app/static/img/app_screen.png)
 
 ## FAQ
 To install, update the package index on your server, if you haven't already:
